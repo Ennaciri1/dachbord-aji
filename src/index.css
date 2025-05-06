@@ -1,3 +1,164 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Variables CSS personnalisées */
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #93c5fd;
+  --dark-bg: #111827;
+  --dark-card: #1f2937;
+  --transition-speed: 300ms;
+}
+
+/* Mode sombre */
+.dark {
+  --primary-light: #3b82f6;
+}
+
+/* Styles de base */
+@layer base {
+  body {
+    @apply text-gray-900 bg-gray-50 dark:bg-gray-900 dark:text-white transition-colors duration-300;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  button:focus, input:focus, textarea:focus {
+    @apply outline-none;
+  }
+  
+  /* Scrollbar personnalisée */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+  }
+}
+
+/* Composants personnalisés */
+@layer components {
+  /* Boutons */
+  .btn {
+    @apply px-4 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center cursor-pointer;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200;
+  }
+  
+  .btn-outline {
+    @apply border border-blue-600 text-blue-600 hover:bg-blue-50 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-gray-800;
+  }
+
+  /* Cartes et conteneurs */
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-all p-4;
+  }
+  
+  .container-fluid {
+    @apply w-full px-4 mx-auto;
+  }
+  
+  /* Formulaires */
+  .form-input {
+    @apply w-full p-2 border dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 
+           text-gray-900 dark:text-white focus:border-blue-600 dark:focus:border-blue-300 
+           focus:ring-1 focus:ring-blue-600 dark:focus:ring-blue-300 transition-colors outline-none;
+  }
+  
+  .form-label {
+    @apply block mb-1 text-gray-700 dark:text-gray-300;
+  }
+
+  /* Badges */
+  .badge {
+    @apply px-2 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .badge-primary {
+    @apply bg-blue-600 text-white;
+  }
+  
+  .badge-success {
+    @apply bg-green-500 text-white;
+  }
+  
+  .badge-warning {
+    @apply bg-yellow-500 text-white;
+  }
+  
+  /* Animations */
+  .fade-in {
+    @apply animate-[fadeIn_0.3s_ease-in-out];
+  }
+  
+  .slide-up {
+    @apply animate-[slideUp_0.3s_ease-in-out];
+  }
+}
+
+/* Utilitaires personnalisés */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .transition-normal {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .absolute-center {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Media queries spécifiques */
+@media (max-width: 640px) {
+  .card {
+    @apply rounded-none shadow-none;
+  }
+}
+
+/* Styles pour les périphériques préférant la réduction du mouvement */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
